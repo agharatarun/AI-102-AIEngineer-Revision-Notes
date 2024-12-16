@@ -29,5 +29,12 @@ Software engineers may interact with Azure Machine Learning in the following way
 ![image](https://github.com/user-attachments/assets/1051515f-9d20-487f-9a61-2c7166480826)
 
 Azure OpenAI Service is an Azure AI service for deploying, utilizing, and fine-tuning models developed by OpenAI. AI engineers can develop applications that use the powerful generative AI models in Azure OpenAI to further utilize this technology. Both REST and language specific SDKs are available when developing applications.
+
 In addition to basic text-based indexing, Azure AI Search enables you to define an **enrichment pipeline** that uses AI skills to enhance the index with insights derived from the source data - for example, by using computer vision and natural language processing capabilities to generate descriptions of images, extract text from scanned documents, and determine key phrases in large documents that encapsulate their key points.
+
 Not only does this AI enrichment produce a more useful search experience, **the insights extracted by your enrichment pipeline can be persisted in a knowledge store for further analysis or integration into a data pipeline for a business intelligence solution**.
+
+To consume the service through the endpoint, applications require the following information:
+1. **The endpoint URI**. This is the HTTP address at which the REST interface for the service can be accessed.
+2. **A subscription key**. Client applications must provide a valid key to consume the service. When you provision an AI services resource, two keys are created - applications can use either key.
+3. **The resource location**. When you provision a resource in Azure, you generally assign it to a location, which determines the Azure data center in which the resource is defined. While most SDKs use the endpoint URI to connect to the service, some require the location.

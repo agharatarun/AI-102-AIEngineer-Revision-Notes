@@ -1,4 +1,4 @@
-#Azure AI Services#
+# **Azure AI Services**
 -----
 Think of AI as software that exhibits one or more human-like capabilities.
 1. **Visual perception** - The ability to use computer vision capabilities to accept, interpret, and process input from images, video streams, and live cameras.
@@ -27,3 +27,7 @@ Software engineers may interact with Azure Machine Learning in the following way
 3. **Using Azure Machine Learning SDKs or command-line interface (CLI) scripts** to orchestrate DevOps processes that manage versioning, deployment, and testing of machine learning models as part of an overall application **delivery solution**.
 
 ![image](https://github.com/user-attachments/assets/1051515f-9d20-487f-9a61-2c7166480826)
+
+Azure OpenAI Service is an Azure AI service for deploying, utilizing, and fine-tuning models developed by OpenAI. AI engineers can develop applications that use the powerful generative AI models in Azure OpenAI to further utilize this technology. Both REST and language specific SDKs are available when developing applications.
+In addition to basic text-based indexing, Azure AI Search enables you to define an **enrichment pipeline** that uses AI skills to enhance the index with insights derived from the source data - for example, by using computer vision and natural language processing capabilities to generate descriptions of images, extract text from scanned documents, and determine key phrases in large documents that encapsulate their key points.
+Not only does this AI enrichment produce a more useful search experience, **the insights extracted by your enrichment pipeline can be persisted in a knowledge store for further analysis or integration into a data pipeline for a business intelligence solution**.

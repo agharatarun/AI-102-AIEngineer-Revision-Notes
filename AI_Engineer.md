@@ -1,5 +1,5 @@
 # **Azure AI Services**
------
+
 Think of AI as software that exhibits one or more human-like capabilities.
 1. **Visual perception** - The ability to use computer vision capabilities to accept, interpret, and process input from images, video streams, and live cameras.
 2. **Text analysis and conversation** - The ability to use natural language processing (NLP) to not only "read", but also generate realistic responses and extract semantic meaning from text.
@@ -38,3 +38,18 @@ To consume the service through the endpoint, applications require the following 
 1. **The endpoint URI**. This is the HTTP address at which the REST interface for the service can be accessed.
 2. **A subscription key**. Client applications must provide a valid key to consume the service. When you provision an AI services resource, two keys are created - applications can use either key.
 3. **The resource location**. When you provision a resource in Azure, you generally assign it to a location, which determines the Azure data center in which the resource is defined. While most SDKs use the endpoint URI to connect to the service, some require the location.
+-----
+##Secure Azure AI services
+You can regenerate **subscription keys** using the Azure portal, or using the az cognitiveservices account keys regenerate Azure command-line interface (CLI) command.
+
+**Token-based authentication**
+When using the REST interface, some AI services support (or even require) token-based authentication. In these cases, the subscription key is presented in an initial request to obtain an authentication token, which has a valid period of 10 minutes. Subsequent requests must present the token to validate that the caller has been authenticated. When using an SDK, the calls to obtain and present a token are handled for you by the SDK.
+**Microsoft Entra ID authentication**
+Azure AI services supports Microsoft Entra ID authentication, enabling you to grant access to specific service principals or managed identities for apps and services running in Azure.
+**Authenticate using service principals**
+1. Create a custom subdomain
+2. Assign a role to a service principal
+3. Authenticate using managed identities
+
+**Apply network access restrictions**
+By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.

@@ -51,5 +51,17 @@ Azure AI services supports Microsoft Entra ID authentication, enabling you to gr
 2. Assign a role to a service principal
 3. Authenticate using managed identities
 
+az ad sp create-for-rbac -n "api://ai-app-ta0011" --role owner --scopes subscriptions/9937e55a-6e56-470d-83d7-a31e3f5e27bb/resourceGroups/rg-01
+{
+    "appId": "abcd12345efghi67890jklmn",
+    "displayName": "api://ai-app-",
+    "password": "1a2b3c4d5e6f7g8h9i0j",
+    "tenant": "1234abcd5678fghi90jklm"
+}
+
+az ad sp show --id <appId-use-from-above>
+
+az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> --secret-permissions get list
+
 **Apply network access restrictions**
 By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.

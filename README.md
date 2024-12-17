@@ -8,6 +8,7 @@ More refrences:
 https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-102
 
 Labs:
+https://github.com/MicrosoftLearning/mslearn-ai-services
 https://github.com/MicrosoftLearning/AI-102-AIEngineer
 https://github.com/MicrosoftLearning/mslearn-ai-vision
 https://github.com/MicrosoftLearning/mslearn-ai-language

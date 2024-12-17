@@ -65,3 +65,36 @@ az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> -
 
 **Apply network access restrictions**
 By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.
+
+-----
+##Monitor Azure AI services
+To create an alert rule for an Azure AI services resource, select the resource in the Azure portal and on the Alerts tab, add a new alert rule. To define the alert rule, you must specify:
+
+* The scope of the alert rule - in other words, the resource you want to monitor.
+* A condition on which the alert is triggered. The specific trigger for the alert is based on a signal type, which can be Activity Log (an entry in the activity log created by an action performed on the resource, such as regenerating its subscription keys) or Metric (a metric threshold such as the number of errors exceeding 10 in an hour).
+* Optional actions, such as sending an email to an administrator notifying them of the alert, or running an Azure Logic App to address the issue automatically.
+* Alert rule details, such as a name for the alert rule and the resource group in which it should be defined.
+
+In the case of Azure AI services, Azure Monitor collects metrics relating to endpoint requests, data submitted and returned, errors, and other useful measurements.
+Diagnostic logging enables you to capture rich operational data for an Azure AI services resource, which can be used to analyze service usage and troubleshoot problems. **Diagnostic settings enable you to capture data for subsequent analysis**.
+
+To capture diagnostic logs for an AI services resource, you need a destination for the log data. You can use Azure Event Hubs as a destination in order to then forward the data on to a custom telemetry solution, and you can connect directly to some third-party solutions; but in most cases you'll use one (or both) of the following kinds of resource within your Azure subscription:
+
+Azure Log Analytics - a service that enables you to query and visualize log data within the Azure portal.
+Azure Storage - a cloud-based data store that you can use to store log archives (which can be exported for analysis in other tools as needed). create the Azure Storage account in the same region as your AI services resource.
+
+-----
+##Deploy Azure AI services in containers
+
+Language containers, Speech containers, Vision containers
+Azure AI services container images example. Complete list can be found at: https://learn.microsoft.com/en-us/training/modules/investigate-container-for-use-with-ai-services/3-use-ai-services-container
+
+mcr.microsoft.com/azure-cognitive-services/textanalytics/keyphrase
+mcr.microsoft.com/**product**/azure-cognitive-services/textanalytics/language/**about**
+
+You can use the Docker pull command to download container images to work with them directly from your machine. Some of the containers are in a "Gated" public preview state, and you need to explicitly request access to use them. Otherwise the containers are available for anyone to use with their Azure AI services deployment.
+
+When you deploy an Azure AI services container image to a host, you must specify three settings.
+ApiKey: Key from your deployed Azure AI service; used for billing.
+Billing	Endpoint: URI from your deployed Azure AI service; used for billing.
+Eula: Value of accept to state you accept the license for the container.

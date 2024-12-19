@@ -100,7 +100,27 @@ Billing	Endpoint: URI from your deployed Azure AI service; used for billing.
 Eula: Value of accept to state you accept the license for the container.
 
 -----
-##
+## Azure AI Content Safety
+
+Safeguarding text content
+1. **Moderate text** scans text across four categories: **violence, hate speech, sexual content, and self-harm**. A **severity level from 0 to 6** is returned for each category. 
+2. **Prompt shields** is a unified API to identify and block jailbreak attacks from inputs to LLMs.
+3. **Protected material** detection checks AI-generated text for protected text such as recipes, copyrighted song lyrics, or other original material.
+4. **Groundedness detection** protects against inaccurate responses in AI-generated text by LLMs. An ungrounded response is one where the model's output varies from the source information. Groundedness detection includes a reasoning option in the API response. This adds a reasoning field that explains any ungroundedness detection. **However, reasoning increases processing time and costs**.
+
+Safeguarding image content
+1. **Moderate images** scans for inappropriate content across four categories: violence, self-harm, sexual, and hate. **A severity level is returned: safe, low, or high**. You then set a **threshold level of low, medium, or high**. The combination of the severity and threshold level determines whether the image is allowed or blocked for each category.
+2. **Moderate multimodal content** scans both images and text, including text extracted from an image using optical character recognition (OCR). Content is analyzed across four categories: violence, hate speech, sexual content, and self-harm.
 
 -----
-Notes: The task of a conversational language model is to predict the user's intent and identify any entities to which the intent applies. It is not the job of a conversational language model to actually perform the actions required to satisfy the intent. For example, a clock application can use a conversational language model to discern that the user wants to know the time in London; but the client application itself must then implement the logic to determine the correct time and present it to the user.
+## Notes: 
+
+* The task of a conversational language model is to predict the user's intent and identify any entities to which the intent applies. It is not the job of a conversational language model to actually perform the actions required to satisfy the intent. For example, a clock application can use a conversational language model to discern that the user wants to know the time in London; but the client application itself must then implement the logic to determine the correct time and present it to the user.
+
+* Speech Synthesis Markup Language (SSML) enables you to customize the way your speech is synthesized using an XML-based format.
+
+* search solution that consists of the following components:
+A data source that references the documents in your Azure storage container.
+A skillset that defines an enrichment pipeline of skills to extract AI-generated fields from the documents.
+An index that defines a searchable set of document records.
+An indexer that extracts the documents from the data source, applies the skillset, and populates the index.

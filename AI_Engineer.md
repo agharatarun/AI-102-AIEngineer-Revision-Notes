@@ -102,7 +102,7 @@ Eula: Value of accept to state you accept the license for the container.
 -----
 ## Azure AI Content Safety
 
-### Safeguarding text content
+#### Safeguarding text content
 1. **Moderate text** scans text across four categories: **violence, hate speech, sexual content, and self-harm**. A **severity level from 0 to 6** is returned for each category. 
 2. **Prompt shields** is a unified API to identify and block jailbreak attacks from inputs to LLMs.
 3. **Protected material** detection checks AI-generated text for protected text such as recipes, copyrighted song lyrics, or other original material.
@@ -112,17 +112,21 @@ Eula: Value of accept to state you accept the license for the container.
 1. **Moderate images** scans for inappropriate content across four categories: violence, self-harm, sexual, and hate. **A severity level is returned: safe, low, or high**. You then set a **threshold level of low, medium, or high**. The combination of the severity and threshold level determines whether the image is allowed or blocked for each category.
 2. **Moderate multimodal content** scans both images and text, including text extracted from an image using optical character recognition (OCR). Content is analyzed across four categories: violence, hate speech, sexual content, and self-harm.
 
-### Custom safety solutions
+#### Custom safety solutions
 1. **Custom categories** enables you to create your own categories by providing positive and negative examples, and training the model. Content can then be scanned according to your own category definitions.
 2. **Safety system message** helps you to **write effective prompts** to guide an AI system's behavior.
 
-### Evaluating accuracy
+#### Evaluating accuracy
 When evaluating how accurately Azure AI Content Safety is for your situation, compare its performance against four criteria:
 
-True positive - correct identification of harmful content.
-False positive - incorrect identification of harmful content.
-True negative - correct identification of harmless content.
-False negative - harmful content isn't identified.
+* True positive - correct identification of harmful content.
+* False positive - incorrect identification of harmful content.
+* True negative - correct identification of harmless content.
+* False negative - harmful content isn't identified.
+
+-----
+# **Azure AI Vision**
+
 
 -----
 ## Notes: 

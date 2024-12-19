@@ -67,7 +67,7 @@ az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> -
 By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.
 
 -----
-##Monitor Azure AI services
+## Monitor Azure AI services
 To create an alert rule for an Azure AI services resource, select the resource in the Azure portal and on the Alerts tab, add a new alert rule. To define the alert rule, you must specify:
 
 * The scope of the alert rule - in other words, the resource you want to monitor.
@@ -84,7 +84,7 @@ Azure Log Analytics - a service that enables you to query and visualize log data
 Azure Storage - a cloud-based data store that you can use to store log archives (which can be exported for analysis in other tools as needed). create the Azure Storage account in the same region as your AI services resource.
 
 -----
-##Deploy Azure AI services in containers
+## Deploy Azure AI services in containers
 
 Language containers, Speech containers, Vision containers
 Azure AI services container images example. Complete list can be found at: https://learn.microsoft.com/en-us/training/modules/investigate-container-for-use-with-ai-services/3-use-ai-services-container
@@ -98,3 +98,9 @@ When you deploy an Azure AI services container image to a host, you must specify
 ApiKey: Key from your deployed Azure AI service; used for billing.
 Billing	Endpoint: URI from your deployed Azure AI service; used for billing.
 Eula: Value of accept to state you accept the license for the container.
+
+-----
+##
+
+-----
+Notes: The task of a conversational language model is to predict the user's intent and identify any entities to which the intent applies. It is not the job of a conversational language model to actually perform the actions required to satisfy the intent. For example, a clock application can use a conversational language model to discern that the user wants to know the time in London; but the client application itself must then implement the logic to determine the correct time and present it to the user.

@@ -11,15 +11,14 @@ Think of AI as software that exhibits one or more human-like capabilities.
 2. **Machine learning**: Data scientists often work with machine learning models. Machine learning deals with the training and validation of predictive models. Typically, a data scientist prepares the data and then uses it to train a model based on an algorithm that exploits the relationships between the features in the data to predict values for unknown labels. **Use factors**: such as the number of nesting sites observed, the area of land designated as protected, the human population in the local area, the daily volume of traffic on local roads, and so on. **evaluate plan**: for housing, infrastructure, and industrial development in the local area and assess their likely impact on the local wildlife
 3. **Artificial intelligence**: Artificial intelligence (AI) describes software that emulates one or more characteristics of human intelligence. Machine learning is a prominent approach used to create AI software. Knowledge of data science can support an understanding of artificial intelligence. **a predictive model** could be trained to analyze image data taken by motion-activated cameras in remote locations, and predict whether a photograph contains a sighting of the animal
 
-After the model has been trained, you can submit new data that includes known feature values and have the model predict the most likely label. Using the model to make predictions is referred to as **inferencing**.
-Software developers should make use of **confidence score** values to evaluate predictions and apply appropriate thresholds to optimize application reliability and mitigate the risk of predictions that may be made based on marginal probabilities.
-software engineers building AI-enabled solutions should apply due consideration to **mitigate risks and ensure fairness, reliability, and adequate protection from harm or discrimination.**
-Responsible AI: Fairness, Reliability and safety, Privacy and Security, Inclusiveness, Transparency, Accountability.
-
-**Automated machine learning**: This feature enables **non-experts to quickly create an effective machine learning model** from data.
-**Azure Machine Learning designer**:	A graphical interface enabling **no-code development** of machine learning solutions.
-**Data and compute management**: **Cloud-based data storage and compute resources** that professional data scientists can use to run data experiment code at scale.
-**Pipelines**:	Data scientists, software engineers, and IT operations professionals can define pipelines to **orchestrate model training, deployment, and management tasks**.
+* After the model has been trained, you can submit new data that includes known feature values and have the model predict the most likely label. Using the model to make predictions is referred to as **inferencing**.
+* Software developers should make use of **confidence score** values to evaluate predictions and apply appropriate thresholds to optimize application reliability and mitigate the risk of predictions that may be made based on marginal probabilities.
+* software engineers building AI-enabled solutions should apply due consideration to **mitigate risks and ensure fairness, reliability, and adequate protection from harm or discrimination.**
+* Responsible AI: Fairness, Reliability and safety, Privacy and Security, Inclusiveness, Transparency, Accountability.
+* **Automated machine learning**: This feature enables **non-experts to quickly create an effective machine learning model** from data.
+* **Azure Machine Learning designer**:	A graphical interface enabling **no-code development** of machine learning solutions.
+* **Data and compute management**: **Cloud-based data storage and compute resources** that professional data scientists can use to run data experiment code at scale.
+* **Pipelines**:	Data scientists, software engineers, and IT operations professionals can define pipelines to **orchestrate model training, deployment, and management tasks**.
 
 Software engineers may interact with Azure Machine Learning in the following ways:
 1. Using Automated Machine Learning or Azure Machine Learning designer to train machine learning models and deploy them as services that can be integrated into AI-enabled applications.
@@ -28,28 +27,26 @@ Software engineers may interact with Azure Machine Learning in the following way
 
 ![image](https://github.com/user-attachments/assets/1051515f-9d20-487f-9a61-2c7166480826)
 
-Azure OpenAI Service is an Azure AI service for deploying, utilizing, and fine-tuning models developed by OpenAI. AI engineers can develop applications that use the powerful generative AI models in Azure OpenAI to further utilize this technology. Both REST and language specific SDKs are available when developing applications.
-
-In addition to basic text-based indexing, Azure AI Search enables you to define an **enrichment pipeline** that uses AI skills to enhance the index with insights derived from the source data - for example, by using computer vision and natural language processing capabilities to generate descriptions of images, extract text from scanned documents, and determine key phrases in large documents that encapsulate their key points.
-
-Not only does this AI enrichment produce a more useful search experience, **the insights extracted by your enrichment pipeline can be persisted in a knowledge store for further analysis or integration into a data pipeline for a business intelligence solution**.
+* Azure OpenAI Service is an Azure AI service for deploying, utilizing, and fine-tuning models developed by OpenAI. AI engineers can develop applications that use the powerful generative AI models in Azure OpenAI to further utilize this technology. Both REST and language specific SDKs are available when developing applications.
+* In addition to basic text-based indexing, Azure AI Search enables you to define an **enrichment pipeline** that uses AI skills to enhance the index with insights derived from the source data - for example, by using computer vision and natural language processing capabilities to generate descriptions of images, extract text from scanned documents, and determine key phrases in large documents that encapsulate their key points.
+* Not only does this AI enrichment produce a more useful search experience, **the insights extracted by your enrichment pipeline can be persisted in a knowledge store for further analysis or integration into a data pipeline for a business intelligence solution**.
 
 To consume the service through the endpoint, applications require the following information:
 1. **The endpoint URI**. This is the HTTP address at which the REST interface for the service can be accessed.
 2. **A subscription key**. Client applications must provide a valid key to consume the service. When you provision an AI services resource, two keys are created - applications can use either key.
 3. **The resource location**. When you provision a resource in Azure, you generally assign it to a location, which determines the Azure data center in which the resource is defined. While most SDKs use the endpoint URI to connect to the service, some require the location.
 -----
-##Secure Azure AI services
+### Secure Azure AI services
 You can regenerate **subscription keys** using the Azure portal, or using the az cognitiveservices account keys regenerate Azure command-line interface (CLI) command.
 
-**Token-based authentication**
-When using the REST interface, some AI services support (or even require) token-based authentication. In these cases, the subscription key is presented in an initial request to obtain an authentication token, which has a valid period of 10 minutes. Subsequent requests must present the token to validate that the caller has been authenticated. When using an SDK, the calls to obtain and present a token are handled for you by the SDK.
-**Microsoft Entra ID authentication**
+* **Token-based authentication**
+  When using the REST interface, some AI services support (or even require) token-based authentication. In these cases, the subscription key is presented in an initial request to obtain an authentication token, which has a valid period of 10 minutes. Subsequent requests must present the token to validate that the caller has been authenticated. When using an SDK, the calls to obtain and present a token are handled for you by the SDK.
+* **Microsoft Entra ID authentication**
 Azure AI services supports Microsoft Entra ID authentication, enabling you to grant access to specific service principals or managed identities for apps and services running in Azure.
-**Authenticate using service principals**
-1. Create a custom subdomain
-2. Assign a role to a service principal
-3. Authenticate using managed identities
+* **Authenticate using service principals**
+  1. Create a custom subdomain
+  2. Assign a role to a service principal
+  3. Authenticate using managed identities
 
 az ad sp create-for-rbac -n "api://ai-app-ta0011" --role owner --scopes subscriptions/9937e55a-6e56-470d-83d7-a31e3f5e27bb/resourceGroups/rg-01
 {
@@ -67,7 +64,7 @@ az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> -
 By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.
 
 -----
-## Monitor Azure AI services
+### Monitor Azure AI services
 To create an alert rule for an Azure AI services resource, select the resource in the Azure portal and on the Alerts tab, add a new alert rule. To define the alert rule, you must specify:
 
 * The scope of the alert rule - in other words, the resource you want to monitor.
@@ -84,7 +81,7 @@ Azure Log Analytics - a service that enables you to query and visualize log data
 Azure Storage - a cloud-based data store that you can use to store log archives (which can be exported for analysis in other tools as needed). create the Azure Storage account in the same region as your AI services resource.
 
 -----
-## Deploy Azure AI services in containers
+### Deploy Azure AI services in containers
 
 Language containers, Speech containers, Vision containers
 Azure AI services container images example. Complete list can be found at: https://learn.microsoft.com/en-us/training/modules/investigate-container-for-use-with-ai-services/3-use-ai-services-container
@@ -100,7 +97,7 @@ Billing	Endpoint: URI from your deployed Azure AI service; used for billing.
 Eula: Value of accept to state you accept the license for the container.
 
 -----
-## Azure AI Content Safety
+### Azure AI Content Safety
 
 #### Safeguarding text content
 1. **Moderate text** scans text across four categories: **violence, hate speech, sexual content, and self-harm**. A **severity level from 0 to 6** is returned for each category. 
@@ -140,12 +137,13 @@ When evaluating how accurately Azure AI Content Safety is for your situation, co
 * Product recognition: Product recognition works the same way object detection does, but with improved accuracy for product labels and brand names.
 
 A COCO file is a JSON file with a specific format that defines:
-* images: Defines the image location in blob storage, name, width, height, and ID.
-* annotations: Defines the classifications (or objects), including which category the image is classified as, the area, and the bounding box (if labeling for object detection).
-* categories: Defines the ID for the named label class.
+* **images**: Defines the image location in blob storage, name, width, height, and ID.
+* **annotations**: Defines the classifications (or objects), including which category the image is classified as, the area, and the bounding box (if labeling for object detection).
+* **categories**: Defines the ID for the named label class.
 
-area	integer	Value of 'Width' x 'Height' (third and fourth values of bbox)
-bbox	list[float]	Relative coordinates of the bounding box (0 to 1), in the order of 'Left', 'Top', 'Width', 'Height'
+area: integer	Value of 'Width' x 'Height' (third and fourth values of bbox)
+
+bbox: list[float]	Relative coordinates of the bounding box (0 to 1), in the order of 'Left', 'Top', 'Width', 'Height'
 
 * When training a model select the **model type**, specify the **dataset** you want to use as training data, and indicate the **training budget**. The training budget is an upper bound of time for how long the training will run; the actual time used for training is often less than the specified budget.
 * You need about 3-5 images per class to train a custom image classification model with Azure AI Vision.
@@ -157,6 +155,21 @@ bbox	list[float]	Relative coordinates of the bounding box (0 to 1), in the order
 
   ![image](https://github.com/user-attachments/assets/2767350f-0f96-4f09-8298-c5372d3d1a6e)
 
+#### The Face service
+
+The Face service offers more comprehensive facial analysis capabilities than the Azure AI Vision service, including:
+
+* Face detection (with bounding box).
+* Comprehensive facial feature analysis (including head pose, presence of spectacles, blur, facial landmarks, occlusion and others).
+* Face comparison and verification.
+* Facial recognition.
+
+* If you want to use the identification, recognition, and verification features of Face, you'll need to apply for the Limited Access policy and get approval before these features are available.
+* When a face is detected by the Face service, a unique ID is assigned to it and retained in the service resource for 24 hours. The ID is a GUID, with no indication of the individual's identity other than their facial features.
+* The trained model is stored in your Face (or Azure AI Services) resource, and can be used by client applications to (Person Group, Person and identified faces):
+  1. Identify individuals in images.
+  2. Verify the identity of a detected face.
+  3. Analyze new images to find faces that are similar to a known, persisted face.
 
 
 -----
@@ -171,3 +184,5 @@ A data source that references the documents in your Azure storage container.
 A skillset that defines an enrichment pipeline of skills to extract AI-generated fields from the documents.
 An index that defines a searchable set of document records.
 An indexer that extracts the documents from the data source, applies the skillset, and populates the index.
+
+* You need to verify that the person in a photo taken at hospital reception is the same person in a photo taken at a ward entrance 10 minutes later. What should you do?: The most efficient approach is to compare the two faces using the detected face ID within 24 hours.

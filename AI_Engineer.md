@@ -127,6 +127,10 @@ When evaluating how accurately Azure AI Content Safety is for your situation, co
 -----
 # **Azure AI Vision**
 
+![image](https://github.com/user-attachments/assets/54821354-7c6a-4aa6-8ae8-8403d4e4f6ba)
+
+smart-cropped thumbnail: You can specify the aspect ratio of the cropped image (width / height), ranging from 0.75 to 1.80.
+When creating an alpha matte of an image, the result is the foreground in all white, with a black background. Alpha matte images are helpful when client applications intend to do further processing of an image that requires separation of foreground and background objects.
 
 -----
 ## Notes: 

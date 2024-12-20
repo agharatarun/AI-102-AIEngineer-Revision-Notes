@@ -129,8 +129,28 @@ When evaluating how accurately Azure AI Content Safety is for your situation, co
 
 ![image](https://github.com/user-attachments/assets/54821354-7c6a-4aa6-8ae8-8403d4e4f6ba)
 
-smart-cropped thumbnail: You can specify the aspect ratio of the cropped image (width / height), ranging from 0.75 to 1.80.
-When creating an alpha matte of an image, the result is the foreground in all white, with a black background. Alpha matte images are helpful when client applications intend to do further processing of an image that requires separation of foreground and background objects.
+* smart-cropped thumbnail: You can specify the aspect ratio of the cropped image (width / height), ranging from 0.75 to 1.80.
+* When creating an alpha matte of an image, the result is the foreground in all white, with a black background. Alpha matte images are helpful when client applications intend to do further processing of an image that requires separation of foreground and background objects.
+
+* Image classification: Models can be trained for multi-class classification (where there are **multiple classes, but each image can belong to only one class**) or multi-label classification (where an **image might be associated with multiple labels**).
+* Object detection:
+  There are two components to object detection:
+  * The **class label of each object** detected in the image. For example, you might predict that an image contains one apple and two oranges.
+  * The **location of each object** within the image, indicated as coordinates of a bounding box that encloses the object.
+* Product recognition: Product recognition works the same way object detection does, but with improved accuracy for product labels and brand names.
+
+A COCO file is a JSON file with a specific format that defines:
+* images: Defines the image location in blob storage, name, width, height, and ID.
+* annotations: Defines the classifications (or objects), including which category the image is classified as, the area, and the bounding box (if labeling for object detection).
+* categories: Defines the ID for the named label class.
+
+area	integer	Value of 'Width' x 'Height' (third and fourth values of bbox)
+bbox	list[float]	Relative coordinates of the bounding box (0 to 1), in the order of 'Left', 'Top', 'Width', 'Height'
+
+* When training a model select the **model type**, specify the **dataset** you want to use as training data, and indicate the **training budget**. The training budget is an upper bound of time for how long the training will run; the actual time used for training is often less than the specified budget.
+* You need about 3-5 images per class to train a custom image classification model with Azure AI Vision.
+* To use the Azure AI Custom Vision service, you must provision two kinds of Azure resource: A training resource & A prediction resource.
+* To train an image classification model with the Azure AI Custom Vision service, you can use the Azure AI Custom Vision portal, the Azure AI Custom Vision REST API or SDK, or a combination of both approaches. The REST API and SDKs enable you to perform the same tasks by writing code, which is useful if you need to automate model training and publishing as part of a DevOps process.
 
 -----
 ## Notes: 

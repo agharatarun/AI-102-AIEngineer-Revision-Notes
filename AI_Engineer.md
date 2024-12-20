@@ -151,6 +151,13 @@ bbox	list[float]	Relative coordinates of the bounding box (0 to 1), in the order
 * You need about 3-5 images per class to train a custom image classification model with Azure AI Vision.
 * To use the Azure AI Custom Vision service, you must provision two kinds of Azure resource: A training resource & A prediction resource.
 * To train an image classification model with the Azure AI Custom Vision service, you can use the Azure AI Custom Vision portal, the Azure AI Custom Vision REST API or SDK, or a combination of both approaches. The REST API and SDKs enable you to perform the same tasks by writing code, which is useful if you need to automate model training and publishing as part of a DevOps process.
+* While image classification requires **one or more tags** that apply to the whole image, object detection requires that each label consists of a **tag and a region** that defines the bounding box for each object in an image.
+* after tagging an initial batch of images, you can train the model. Subsequent labeling of new images can benefit from the smart labeler tool in the portal, which can suggest not only the regions, but the classes of object they contain.
+* Bounding box
+
+  ![image](https://github.com/user-attachments/assets/2767350f-0f96-4f09-8298-c5372d3d1a6e)
+
+
 
 -----
 ## Notes: 

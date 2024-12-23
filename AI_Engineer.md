@@ -55,7 +55,9 @@ Azure AI services supports Microsoft Entra ID authentication, enabling you to gr
     "password": "1a2b3c4d5e6f7g8h9i0j",
     "tenant": "1234abcd5678fghi90jklm"
 }
+
 az ad sp show --id <appId-use-from-above>
+
 az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> --secret-permissions get list`
 
 **Apply network access restrictions**
@@ -225,7 +227,7 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
 
 * Azure AI Language resource: Language detection, Key phrase extraction, Sentiment analysis, Named entity recognition, Entity linking
 * **Detect Language**. Request: "kind": "LanguageDetection", Response "kind": "LanguageDetectionResults"
-* multi-language example response JSON
+  * multi-language example response JSON
   `{
     "documents": [
         {
@@ -252,7 +254,7 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
          ],
          "warnings": []
        }`
-* Sentiment analysis is used to evaluate how positive or negative a text document is. Sentence sentiment is based on confidence scores for positive, negative, and neutral classification values between 0 and 1. If the sentence classifications include positive and negative, the overall sentiment is mixed. "kind": "SentimentAnalysis", "kind": "SentimentAnalysisResults"
+* **Sentiment analysis** is used to evaluate how positive or negative a text document is. Sentence sentiment is based on confidence scores for positive, negative, and neutral classification values between 0 and 1. If the sentence classifications include positive and negative, the overall sentiment is mixed. "kind": "SentimentAnalysis", "kind": "SentimentAnalysisResults"
   `{
         "id": "1",
         "sentiment": "positive",
@@ -261,10 +263,10 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
           "neutral": 0.1,
           "negative": 0.01
         }`
-* Named Entity Recognition identifies entities that are mentioned in the text. 
-* `https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=ga-api`
-* "kind": "EntityRecognition", "kind": "EntityRecognitionResults"
-* `"entities":[
+* **Named Entity Recognition** identifies entities that are mentioned in the text.
+  * `https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=ga-api`
+  * "kind": "EntityRecognition", "kind": "EntityRecognitionResults"
+  * `"entities":[
                   {
                     "text":"Joe",
                     "category":"Person",
@@ -289,7 +291,8 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
                     "confidenceScore":0.8
                   }
                 ]`
-  * **Extract linked entities:** In some cases, the same name might be applicable to more than one entity. For example, does an instance of the word "Venus" refer to the planet or the goddess from mythology?
+* **Extract linked entities:**
+  * In some cases, the same name might be applicable to more than one entity. For example, does an instance of the word "Venus" refer to the planet or the goddess from mythology?
   * Entity linking can be used to disambiguate entities of the same name by referencing an article in a knowledge base. Wikipedia provides the knowledge base for the Text Analytics service.
   * "kind": "EntityLinking", "kind": "EntityLinkingResults"
   * `{
@@ -314,7 +317,7 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
         ],
         "warnings": []
       }`
-    
+   
 #### question answering solution
   
 

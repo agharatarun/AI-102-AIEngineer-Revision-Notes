@@ -171,7 +171,56 @@ The Face service offers more comprehensive facial analysis capabilities than the
   2. Verify the identity of a detected face.
   3. Analyze new images to find faces that are similar to a known, persisted face.
 
+#### Azure AI Vision options for reading text
 
+Azure AI Vision Service & Azure AI Document Intelligence. access via the REST API or a client library
+
+* Image Analysis Optical character recognition (OCR):
+  * Use this feature for general, **unstructured documents with smaller amount of text, or images that contain text**.
+  * The Image Analysis service OCR feature is best suited for short sections of handwritten text.
+  * Results are returned immediately (**synchronous**) from a single API call.
+  * Has functionality for analyzing images past extracting text, including object detection, describing or categorizing an image, generating smart-cropped thumbnails and more.
+  * Examples include: street signs, handwritten notes, and store signs.
+  * Read API
+    * Python:
+      `result = client.analyze(
+          image_url=<image_to_analyze>,
+          visual_features=[VisualFeatures.READ]
+      )`
+
+    * REST API: https://<endpoint>/computervision/imageanalysis:analyze?features=read&...
+    * Read OCR function are returned synchronously, either as JSON or the language specific object of a similar structure.
+    * These results are broken down in **blocks, then lines, and then words**. Additionally, the text values are included at both the line and word levels, making it easier to read entire lines of text if you don't need to extract text at the individual word level. Results also contain bounding boxes for each word and line.
+      
+* Document Intelligence:
+  * Use this service to read small to large volumes of text from images and PDF documents.
+  * The Document Intelligence API can be used to process PDF formatted files.
+  * This service uses **context and structure of the document to improve accuracy**.
+  * The initial function call returns an **asynchronous** operation ID, which must be used in a subsequent call to retrieve the results.
+  * Examples include: receipts, articles, and invoices.
+
+#### Analyze video
+
+* The Azure Video Indexer service is designed to help you extract information from videos. It provides functionality that you can use for:
+1. Facial recognition - detecting the presence of individual people in the image. This requires Limited Access approval.
+2. Optical character recognition - reading text in the video.
+3. Speech transcription - creating a text transcript of spoken dialog in the video.
+4. Topics - identification of key topics discussed in the video.
+5. Sentiment - analysis of how positive or negative segments within the video are.
+6. Labels - label tags that identify key objects or themes throughout the video.
+7. Content moderation - detection of adult or violent themes in the video.
+8. Scene segmentation - a breakdown of the video into its constituent scenes.
+
+* You can extend the recognition capabilities of Video Analyzer by creating custom models for: People, Language & Brands.
+* Brand detection identifies the mention of products, services, and companies suggested by Bing's brands database. For example, if Microsoft is mentioned in a video or audio content or if it shows up in visual text in a video, Azure AI Video Indexer detects it as a brand. You can both detect known brands, and well as include new brands you want to detect by providing information about it.
+* Azure Video Indexer widgets: The widgets used in the Azure Video Indexer portal to play, analyze, and edit videos can be embedded in your own custom HTML interfaces. You can use this technique to share insights from specific videos with others without giving them full access to your account in the Azure Video Indexer portal.
+* Azure Video Indexer API:
+  * To get access token: https://api.videoindexer.ai/Auth/<location>/Accounts/<accountId>/AccessToken
+  * You can then use your token to consume the REST API and automate video indexing tasks, creating projects, retrieving insights, and creating or deleting custom models.
+  * For example, a GET call to https://api.videoindexer.ai/<location>/Accounts/<accountId>/Customization/CustomLogos/Logos/<logoId>?<accessToken> REST endpoint returns the specified logo.
+  * In another example, you can send a GET request to https://api.videoindexer.ai/<location>/Accounts/<accountId>/Videos?<accessToken>, which returns details of videos in your account
+* Azure Resource Manager (ARM) templates are available to create the Azure AI Video Indexer resource in your subscription, based on the parameters specified in the template file.
+* 
 -----
 ## Notes: 
 

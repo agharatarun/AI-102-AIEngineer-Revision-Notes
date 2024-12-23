@@ -48,19 +48,15 @@ Azure AI services supports Microsoft Entra ID authentication, enabling you to gr
   2. Assign a role to a service principal
   3. Authenticate using managed identities
 
-`
-az ad sp create-for-rbac -n "api://ai-app-ta0011" --role owner --scopes subscriptions/9937e55a-6e56-470d-83d7-a31e3f5e27bb/resourceGroups/rg-01
+`az ad sp create-for-rbac -n "api://ai-app-ta0011" --role owner --scopes subscriptions/9937e55a-6e56-470d-83d7-a31e3f5e27bb/resourceGroups/rg-01
 {
     "appId": "abcd12345efghi67890jklmn",
     "displayName": "api://ai-app-",
     "password": "1a2b3c4d5e6f7g8h9i0j",
     "tenant": "1234abcd5678fghi90jklm"
 }
-
 az ad sp show --id <appId-use-from-above>
-
-az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> --secret-permissions get list
-`
+az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> --secret-permissions get list`
 
 **Apply network access restrictions**
 By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.
@@ -228,6 +224,99 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
 #### Analyze text
 
 * Azure AI Language resource: Language detection, Key phrase extraction, Sentiment analysis, Named entity recognition, Entity linking
+* **Detect Language**. Request: "kind": "LanguageDetection", Response "kind": "LanguageDetectionResults"
+* multi-language example response JSON
+  `{
+    "documents": [
+        {
+            "id": "1",
+            "detectedLanguage": {
+                "name": "Spanish",
+                "iso6391Name": "es",
+                "confidenceScore": 0.9375
+            },
+            "warnings": []
+        }
+    ],
+    "errors": [],
+    "modelVersion": "2022-10-01"
+}`
+
+* The last condition to consider is when there is ambiguity as to the language content. The scenario might happen if you submit textual content that the analyzer is not able to parse, for example because of character encoding issues when converting the text to a string variable. As a result, the response for the language name and ISO code will indicate (unknown) and the score value will be returned as 0
+* **Key phrase** extraction works best for larger documents (the maximum size that can be analyzed is **5,120 characters**). Extract key phrases - Request: "kind": "KeyPhraseExtraction", Response: "kind": "KeyPhraseExtractionResults"
+  `{
+         "id": "1",
+         "keyPhrases": [
+           "change",
+           "world"
+         ],
+         "warnings": []
+       }`
+* Sentiment analysis is used to evaluate how positive or negative a text document is. Sentence sentiment is based on confidence scores for positive, negative, and neutral classification values between 0 and 1. If the sentence classifications include positive and negative, the overall sentiment is mixed. "kind": "SentimentAnalysis", "kind": "SentimentAnalysisResults"
+  `{
+        "id": "1",
+        "sentiment": "positive",
+        "confidenceScores": {
+          "positive": 0.89,
+          "neutral": 0.1,
+          "negative": 0.01
+        }`
+* Named Entity Recognition identifies entities that are mentioned in the text. 
+* `https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=ga-api`
+* "kind": "EntityRecognition", "kind": "EntityRecognitionResults"
+* `"entities":[
+                  {
+                    "text":"Joe",
+                    "category":"Person",
+                    "offset":0,
+                    "length":3,
+                    "confidenceScore":0.62
+                  },
+                  {
+                    "text":"London",
+                    "category":"Location",
+                    "subcategory":"GPE",
+                    "offset":12,
+                    "length":6,
+                    "confidenceScore":0.88
+                  },
+                  {
+                    "text":"Saturday",
+                    "category":"DateTime",
+                    "subcategory":"Date",
+                    "offset":22,
+                    "length":8,
+                    "confidenceScore":0.8
+                  }
+                ]`
+  * **Extract linked entities:** In some cases, the same name might be applicable to more than one entity. For example, does an instance of the word "Venus" refer to the planet or the goddess from mythology?
+  * Entity linking can be used to disambiguate entities of the same name by referencing an article in a knowledge base. Wikipedia provides the knowledge base for the Text Analytics service.
+  * "kind": "EntityLinking", "kind": "EntityLinkingResults"
+  * `{
+        "id": "1",
+        "entities": [
+          {
+            "bingId": "89253af3-5b63-e620-9227-f839138139f6",
+            "name": "Venus",
+            "matches": [
+              {
+                "text": "Venus",
+                "offset": 6,
+                "length": 5,
+                "confidenceScore": 0.01
+              }
+            ],
+            "language": "en",
+            "id": "Venus",
+            "url": "https://en.wikipedia.org/wiki/Venus",
+            "dataSource": "Wikipedia"
+          }
+        ],
+        "warnings": []
+      }`
+    
+#### question answering solution
+  
 
 -----
 ## Notes: 

@@ -35,7 +35,7 @@ To consume the service through the endpoint, applications require the following 
 1. **The endpoint URI**. This is the HTTP address at which the REST interface for the service can be accessed.
 2. **A subscription key**. Client applications must provide a valid key to consume the service. When you provision an AI services resource, two keys are created - applications can use either key.
 3. **The resource location**. When you provision a resource in Azure, you generally assign it to a location, which determines the Azure data center in which the resource is defined. While most SDKs use the endpoint URI to connect to the service, some require the location.
------
+
 ### Secure Azure AI services
 You can regenerate **subscription keys** using the Azure portal, or using the az cognitiveservices account keys regenerate Azure command-line interface (CLI) command.
 
@@ -48,6 +48,7 @@ Azure AI services supports Microsoft Entra ID authentication, enabling you to gr
   2. Assign a role to a service principal
   3. Authenticate using managed identities
 
+`
 az ad sp create-for-rbac -n "api://ai-app-ta0011" --role owner --scopes subscriptions/9937e55a-6e56-470d-83d7-a31e3f5e27bb/resourceGroups/rg-01
 {
     "appId": "abcd12345efghi67890jklmn",
@@ -59,11 +60,11 @@ az ad sp create-for-rbac -n "api://ai-app-ta0011" --role owner --scopes subscrip
 az ad sp show --id <appId-use-from-above>
 
 az keyvault set-policy -n <keyVaultName> --object-id <objectId-use-from-above> --secret-permissions get list
+`
 
 **Apply network access restrictions**
 By default, Azure AI services are accessible from all networks. Some individual AI services resources (such as Azure AI Face service, Azure AI Vision, and others) can be configured to restrict access to specific network addresses - either public Internet addresses or addresses on virtual networks.
 
------
 ### Monitor Azure AI services
 To create an alert rule for an Azure AI services resource, select the resource in the Azure portal and on the Alerts tab, add a new alert rule. To define the alert rule, you must specify:
 
@@ -80,7 +81,6 @@ To capture diagnostic logs for an AI services resource, you need a destination f
 Azure Log Analytics - a service that enables you to query and visualize log data within the Azure portal.
 Azure Storage - a cloud-based data store that you can use to store log archives (which can be exported for analysis in other tools as needed). create the Azure Storage account in the same region as your AI services resource.
 
------
 ### Deploy Azure AI services in containers
 
 Language containers, Speech containers, Vision containers
@@ -96,7 +96,6 @@ ApiKey: Key from your deployed Azure AI service; used for billing.
 Billing	Endpoint: URI from your deployed Azure AI service; used for billing.
 Eula: Value of accept to state you accept the license for the container.
 
------
 ### Azure AI Content Safety
 
 #### Safeguarding text content
@@ -183,12 +182,14 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
   * Examples include: street signs, handwritten notes, and store signs.
   * Read API
     * Python:
-      `result = client.analyze(
+      `
+      result = client.analyze(
           image_url=<image_to_analyze>,
           visual_features=[VisualFeatures.READ]
-      )`
+      )
+      `
 
-    * REST API: https://<endpoint>/computervision/imageanalysis:analyze?features=read&...
+    * REST API: `https://<endpoint>/computervision/imageanalysis:analyze?features=read&...`
     * Read OCR function are returned synchronously, either as JSON or the language specific object of a similar structure.
     * These results are broken down in **blocks, then lines, and then words**. Additionally, the text values are included at both the line and word levels, making it easier to read entire lines of text if you don't need to extract text at the individual word level. Results also contain bounding boxes for each word and line.
       
@@ -215,12 +216,19 @@ Azure AI Vision Service & Azure AI Document Intelligence. access via the REST AP
 * Brand detection identifies the mention of products, services, and companies suggested by Bing's brands database. For example, if Microsoft is mentioned in a video or audio content or if it shows up in visual text in a video, Azure AI Video Indexer detects it as a brand. You can both detect known brands, and well as include new brands you want to detect by providing information about it.
 * Azure Video Indexer widgets: The widgets used in the Azure Video Indexer portal to play, analyze, and edit videos can be embedded in your own custom HTML interfaces. You can use this technique to share insights from specific videos with others without giving them full access to your account in the Azure Video Indexer portal.
 * Azure Video Indexer API:
-  * To get access token: https://api.videoindexer.ai/Auth/<location>/Accounts/<accountId>/AccessToken
+  * To get access token: `https://api.videoindexer.ai/Auth/<location>/Accounts/<accountId>/AccessToken`
   * You can then use your token to consume the REST API and automate video indexing tasks, creating projects, retrieving insights, and creating or deleting custom models.
-  * For example, a GET call to https://api.videoindexer.ai/<location>/Accounts/<accountId>/Customization/CustomLogos/Logos/<logoId>?<accessToken> REST endpoint returns the specified logo.
-  * In another example, you can send a GET request to https://api.videoindexer.ai/<location>/Accounts/<accountId>/Videos?<accessToken>, which returns details of videos in your account
+  * For example, a GET call to `https://api.videoindexer.ai/<location>/Accounts/<accountId>/Customization/CustomLogos/Logos/<logoId>?<accessToken>` REST endpoint returns the specified logo.
+  * In another example, you can send a GET request to `https://api.videoindexer.ai/<location>/Accounts/<accountId>/Videos?<accessToken>`, which returns details of videos in your account
 * Azure Resource Manager (ARM) templates are available to create the Azure AI Video Indexer resource in your subscription, based on the parameters specified in the template file.
-* 
+
+-----
+# **Azure NLP**
+
+#### Analyze text
+
+* Azure AI Language resource: Language detection, Key phrase extraction, Sentiment analysis, Named entity recognition, Entity linking
+
 -----
 ## Notes: 
 
